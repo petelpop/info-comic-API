@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('comics', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('firstname');
-            $table->string('lastname')->nullable();
-            $table->rememberToken();
+            $table->string('title');
+            $table->unsignedBigInteger('author');
+            $table->text('prolog');
+            $table->integer('eps');
             $table->timestamps();
+
             $table->softDeletes();
+            $table->foreign('author')->references('id')->on('users');
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('comics');
     }
 };
