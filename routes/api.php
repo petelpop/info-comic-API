@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ComicController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,5 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/comics', [ComicController::class, 'index']);
-Route::get('/comics/{id}', [ComicController::class, 'show']);
+Route::get('/comics', [ComicController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/comics/{id}', [ComicController::class, 'show'])->middleware('auth:sanctum');
+Route::post('/login', [AuthenticationController::class, 'login']);
