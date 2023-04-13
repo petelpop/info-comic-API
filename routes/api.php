@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/comics', [ComicController::class, 'index'])->middleware('auth:sanctum');
 Route::get('/comics/{id}', [ComicController::class, 'show'])->middleware('auth:sanctum');
 Route::post('/login', [AuthenticationController::class, 'login']);
+Route::get('/logout', [AuthenticationController::class, 'logout'])->middleware('auth:sanctum');
