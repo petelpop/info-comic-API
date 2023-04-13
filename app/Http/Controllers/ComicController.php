@@ -6,6 +6,7 @@ use App\Models\Comic;
 use Illuminate\Http\Request;
 use App\Http\Resources\ComicResource;
 use Illuminate\Support\Facades\Auth;
+
 class ComicController extends Controller
 {
     public function index(){
@@ -38,8 +39,16 @@ class ComicController extends Controller
             'eps' => 'required'
         ]);
 
-        return response()->json('Sukses Diubah!');
+        return response()->json('Info Komik Berhasil Diubah!');
     }
 
-    
+    public function delete($id){
+        $comic = Comic::findOrFail($id);
+        $comic -> delete();
+
+        return response()->json([
+            'message' => 'Info Komik Berhasil Dihapus!'
+        ]);
+    }
+
 }

@@ -21,8 +21,10 @@ Route::middleware(['auth:sanctum'])->group(function (){
   Route::get('/comics/{id}', [ComicController::class, 'show']);
   Route::post('/comics', [ComicController::class, 'store']);
   Route::patch('/comics/{id}', [ComicController::class, 'update'])->middleware(['comic.owner']);
+  Route::delete('/comics/{id}', [ComicController::class, 'delete'])->middleware(['comic.owner']);
   Route::get('/logout', [AuthenticationController::class, 'logout']);
   Route::get('me', [AuthenticationController::class, 'me']);
 });
 
 Route::post('/login', [AuthenticationController::class, 'login']);
+Route::post('/register', [AuthenticationController::class, 'register']);
