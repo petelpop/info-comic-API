@@ -31,8 +31,7 @@ class ComicController extends Controller
         return new ComicDetailResource($comic->loadMissing('writer:id,username'));
     }
 
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $request->validate([
             'title' => 'required|max:255',
             'prolog' => 'required',
@@ -41,4 +40,6 @@ class ComicController extends Controller
 
         return response()->json('Sukses Diubah!');
     }
+
+    
 }

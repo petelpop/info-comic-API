@@ -20,7 +20,7 @@ Route::middleware(['auth:sanctum'])->group(function (){
   Route::get('/comics', [ComicController::class, 'index']);
   Route::get('/comics/{id}', [ComicController::class, 'show']);
   Route::post('/comics', [ComicController::class, 'store']);
-  Route::patch('/comics/{id}', [ComicController::class, 'update']);
+  Route::patch('/comics/{id}', [ComicController::class, 'update'])->middleware(['comic.owner']);
   Route::get('/logout', [AuthenticationController::class, 'logout']);
   Route::get('me', [AuthenticationController::class, 'me']);
 });
