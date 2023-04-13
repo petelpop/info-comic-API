@@ -30,4 +30,15 @@ class ComicController extends Controller
         $comic = Comic::create($request->all());
         return new ComicDetailResource($comic->loadMissing('writer:id,username'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|max:255',
+            'prolog' => 'required',
+            'eps' => 'required'
+        ]);
+
+        return response()->json('Sukses Diubah!');
+    }
 }
