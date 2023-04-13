@@ -13,7 +13,7 @@ class ComicController extends Controller
     }
 
     public function show($id){
-        $comic = Comic::findOrFail($id);
+        $comic = Comic::with('writer:id,username')->findOrFail($id);
         return new ComicDetailResource($comic);
     }
 }
