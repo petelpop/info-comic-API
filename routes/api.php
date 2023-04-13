@@ -16,7 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/comics', [ComicController::class, 'index'])->middleware('auth:sanctum');
-Route::get('/comics/{id}', [ComicController::class, 'show'])->middleware('auth:sanctum');
+Route::middleware(['auth:sanctum'])->group(function (){
+  Route::get('/comics', [ComicController::class, 'index']);
+  Route::get('/comics/{id}', [ComicController::class, 'show']);
+  Route::post('/comics', [ComicController::class, 'store']);
+  Route::get('/logout', [AuthenticationController::class, 'logout']);
+  Route::get('me', [AuthenticationController::class, 'me']);
+});
+
 Route::post('/login', [AuthenticationController::class, 'login']);
-Route::get('/logout', [AuthenticationController::class, 'logout'])->middleware('auth:sanctum');
