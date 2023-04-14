@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ComicController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::middleware(['auth:sanctum'])->group(function (){
   Route::post('/comics', [ComicController::class, 'store']);
   Route::patch('/comics/{id}', [ComicController::class, 'update'])->middleware(['comic.owner']);
   Route::delete('/comics/{id}', [ComicController::class, 'delete'])->middleware(['comic.owner']);
+  Route::post('/comment', [CommentController::class, 'store']);
   Route::get('/logout', [AuthenticationController::class, 'logout']);
   Route::get('me', [AuthenticationController::class, 'me']);
 });
