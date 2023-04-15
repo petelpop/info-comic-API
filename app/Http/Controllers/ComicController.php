@@ -11,11 +11,11 @@ class ComicController extends Controller
 {
     public function index(){
         $comics = Comic::all();
-        return ComicResource::collection($comics);        
+        return ComicDetailResource::collection($comics->loadMissing('writer:id,username', 'comments:id,comic_id,user_id,comment_content'));     
     }
 
     public function show($id){
-        $comic = Comic::with('writer:id,username')->findOrFail($id);
+        $comic = Comic::with('writer:id,username', 'comments:id,comic_id,user_id,comment_content')->findOrFail($id);
         return new ComicDetailResource($comic);
     }
 

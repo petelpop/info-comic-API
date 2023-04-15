@@ -18,8 +18,17 @@ class ComicDetailResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'prolog' => $this->prolog,
-            'writer' => $this->whenLoaded('writer'),
+            'writer' => $this->whenLoaded('writer'),   
             'episode' => $this->eps,
+            'comment_total' => $this->whenLoaded('comments', function(){
+                return count($this->comments);
+            }),
+            'comments' => $this->whenLoaded('comments', function(){
+                return collect($this->comments)->each(function($comment){
+                    $comment->commentator;
+                    return $comment;
+                });
+            }),
             'created_at' => date_format($this->created_at, "Y/m/d H:i:s"),
         ];
     }
