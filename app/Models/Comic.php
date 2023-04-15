@@ -16,7 +16,8 @@ class Comic extends Model
         'title',
         'prolog',
         'author',
-        'eps'
+        'eps',
+        'image'
     ];
 
     public function writer(): BelongsTo
