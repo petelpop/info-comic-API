@@ -17,9 +17,6 @@ class ComicResource extends JsonResource
         return [
             'id' => $this -> id,
             'title' => $this -> title,
-            'comment_total' => $this->whenLoaded('comments', function(){
-                return count($this->content);
-            }),
         ];
     }
 }
