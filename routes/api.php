@@ -24,7 +24,8 @@ Route::middleware(['auth:sanctum'])->group(function (){
   Route::patch('/comics/{id}', [ComicController::class, 'update'])->middleware(['comic.owner']);
   Route::delete('/comics/{id}', [ComicController::class, 'delete'])->middleware(['comic.owner']);
   Route::post('/comment', [CommentController::class, 'store']);
-  Route::patch('/comment/{id}', [CommentController::class, 'update']);
+  Route::patch('/comment/{id}', [CommentController::class, 'update'])->middleware(['comment.owner']);
+  Route::delete('/comment/{id}', [CommentController::class, 'delete'])->middleware(['comment.owner']);
   Route::get('/logout', [AuthenticationController::class, 'logout']);
   Route::get('me', [AuthenticationController::class, 'me']);
 });
