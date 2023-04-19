@@ -17,6 +17,7 @@ class ComicDetailResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'image' => $this->image,
             'prolog' => $this->prolog,
             'writer' => $this->whenLoaded('writer'),   
             'episode' => $this->eps,
